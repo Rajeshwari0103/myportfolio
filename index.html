@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Portfolio</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial;}
+body{scroll-behavior:smooth;}
+
+header{
+  position:fixed;
+  width:100%;
+  background:#111;
+  padding:10px;
+  z-index:1000;
+}
+nav{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+nav a{
+  color:white;
+  text-decoration:none;
+  padding:5px 10px;
+}
+
+section{
+  padding:80px 20px;
+  min-height:100vh;
+}
+
+.home{
+  text-align:center;
+  background:#f2f2f2;
+}
+.home img{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  object-fit:cover;
+  margin:10px 0;
+}
+
+.btn{
+  padding:10px 15px;
+  background:black;
+  color:white;
+  border:none;
+  cursor:pointer;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:15px;
+}
+.card{
+  padding:15px;
+  border:1px solid #ddd;
+  border-radius:10px;
+}
+
+.preview{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:15px;
+}
+.preview img{
+  width:200px;
+  border-radius:10px;
+}
+
+.contact a{
+  display:block;
+  margin:5px 0;
+  color:blue;
+}
+
+@media(max-width:600px){
+  nav{flex-direction:column;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#qualification">Qualification</a>
+<a href="#skills">Skills</a>
+<a href="#interest">Interest</a>
+<a href="#certificates">Certificates</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<!-- HOME -->
+<section id="home" class="home">
+<h1>Your Name</h1>
+
+<img id="profilePic" src="profile.jpg">
+
+<br>
+<input type="file" id="uploadProfile" accept="image/*">
+
+<p>Short introduction about you</p>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<h2>About Me</h2>
+<p>Write about yourself here...</p>
+</section>
+
+<!-- QUALIFICATION -->
+<section id="qualification">
+<h2>Qualification</h2>
+<div class="cards">
+<div class="card">Your Degree / College</div>
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<h2>Skills</h2>
+<div class="cards">
+<div class="card">HTML</div>
+<div class="card">CSS</div>
+<div class="card">JavaScript</div>
+</div>
+</section>
+
+<!-- INTEREST -->
+<section id="interest">
+<h2>Interest</h2>
+<p>Your interests...</p>
+</section>
+
+<!-- CERTIFICATES -->
+<section id="certificates">
+<h2>My Certificates</h2>
+
+<button class="btn" onclick="toggleCertificates()">Show Certificates</button>
+
+<br><br>
+
+<!-- Upload option (temporary preview) -->
+<input type="file" id="certUpload" multiple accept="image/*">
+
+<!-- Permanent certificates -->
+<div class="preview" id="certPreview" style="display:none;">
+
+<img src="certificates/html_certificate7.jpg">
+<img src="certificates/css_certificate3.jpg">
+<img src="certificates/javascript_certificate6.jpg">
+<img src="certificates/nodejs_certificate5.jpg">
+<img src="certificates/frontendweb_certificate4.jpg">
+<img src="certificates/github_certificate2.jpg">
+<img src="certificates/Aws_certificate1.jpg">
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+<h2>Contact Me</h2>
+
+<p>Email: your@email.com</p>
+<p>Phone: 1234567890</p>
+
+<a href="#">GitHub Profile</a>
+<a href="#">LinkedIn Profile</a>
+
+</section>
+
+<script>
+// Smooth scroll
+document.querySelectorAll('nav a').forEach(link=>{
+  link.addEventListener('click',function(e){
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href'))
+    .scrollIntoView({behavior:'smooth'});
+  });
+});
+
+// Profile upload (preview only)
+document.getElementById('uploadProfile').addEventListener('change',function(){
+  const file=this.files[0];
+  if(file){
+    const reader=new FileReader();
+    reader.onload=e=>{
+      document.getElementById('profilePic').src=e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+// Show/Hide certificates
+function toggleCertificates(){
+  const box=document.getElementById('certPreview');
+  box.style.display = box.style.display==='none' ? 'flex' : 'none';
+}
+
+// Upload certificates (preview only)
+document.getElementById('certUpload').addEventListener('change',function(){
+  const preview=document.getElementById('certPreview');
+
+  Array.from(this.files).forEach(file=>{
+    const reader=new FileReader();
+
+    reader.onload=function(e){
+      const img=document.createElement('img');
+      img.src=e.target.result;
+      preview.appendChild(img);
+    }
+
+    reader.readAsDataURL(file);
+  });
+});
+</script>
+
+</body>
+</html>
