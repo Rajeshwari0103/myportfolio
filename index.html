@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rajeshwari Portfolio</title>
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <!-- ICONS -->
+  <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffecd2, #fcb69f, #ffdde1);
+      background-size: 300% 300%;
+      animation: glowBG 10s ease infinite;
+      color: #333;
+    }
+
+    @keyframes glowBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    nav {
+      background: rgba(255,255,255,0.6);
+      padding: 15px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      color: #ff6f91;
+    }
+
+    .container {
+      min-height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(15px);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+      max-width: 650px;
+      width: 100%;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .profile {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid white;
+      margin-bottom: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h1 {
+      font-size: 40px;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ff6f91, #ff9a9e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .typing {
+      font-size: 18px;
+      margin-top: 10px;
+      color: #555;
+    }
+
+    .page { display: none; }
+    .active { display: flex; }
+
+    .certificates {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+    }
+
+    .certificates img {
+      width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .certificates img:hover {
+      transform: scale(1.08);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      background: rgba(0,0,0,0.8);
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 80%;
+    }
+
+    .modal span {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+    }
+
+    button {
+      padding: 10px;
+      background: #ff9a9e;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ff6f91;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a onclick="showPage('home')">Home</a>
+  <a onclick="showPage('skills')">Skills</a>
+  <a onclick="showPage('certificates')">Certificates</a>
+  <a onclick="showPage('contact')">Contact</a>
+</nav>
+
+<!-- HOME -->
+<div id="home" class="container page active">
+  <div class="card">
+    <img src="profile.jpeg" class="profile">
+    <h1>Rajeshwari K</h1>
+    <div class="typing" id="typing"></div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div id="skills" class="container page">
+  <div class="card">
+    <h2>💻 Skills</h2>
+    <p>HTML, CSS, JavaScript, Python, GitHub, Cloud Computing</p>
+
+    <h2>🎓 Education</h2>
+    <p>BCA in Cloud Computing</p>
+    <p>Kristu Jayanti University</p>
+  </div>
+</div>
+
+<!-- CERTIFICATES -->
+<div id="certificates" class="container page">
+  <div class="card">
+    <h2>📜 Certificates</h2>
+    <div class="certificates">
+      <img src="html_certificate1.jpeg" onclick="openModal(this.src)">
+      <img src="aws_certificate6.jpeg" onclick="openModal(this.src)">
+      <img src="css_certificate3.jpeg" onclick="openModal(this.src)">
+      <img src="java_certificate5.jpeg" onclick="openModal(this.src)">
+      <img src="frontend_certificate2.jpeg" onclick="openModal(this.src)">
+      <img src="nodejs_certificate7.jpeg" onclick="openModal(this.src)">
+      <img src="git_certificate4.jpeg" onclick="openModal(this.src)">
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="container page">
+  <div class="card">
+    <h2>📞 Contact</h2>
+    <p>📧 rajuraji60346@gmail.com</p>
+    <p>🔗 linkedin.com/in/rajeshwari.k</p>
+    <p>💻 github.com/Rajeshwari0103-cyber</p>
+
+    <h2>💬 Feedback</h2>
+
+    <form id="feedbackForm">
+      <input type="text" id="name" placeholder="Name" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <textarea id="message" placeholder="Message" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <span onclick="closeModal()">&times;</span>
+  <img id="modalImg">
+</div>
+
+<script>
+// Page navigation
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(page).classList.add('active');
+}
+
+// Typing effect
+const text = "Aspiring Tech Enthusiast | Cloud & Web Developer";
+let i = 0;
+function typeEffect() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeEffect, 50);
+  }
+}
+typeEffect();
+
+// Modal
+function openModal(src) {
+  document.getElementById("modal").style.display = "flex";
+  document.getElementById("modalImg").src = src;
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
+// ✅ Feedback (FIXED)
+document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const message = document.getElementById("message").value;
+
+  try {
+    const res = await fetch("http://localhost:5000/feedback", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, email, message })
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      alert("✅ Feedback sent successfully!");
+      document.getElementById("feedbackForm").reset();
+    }
+
+  } catch (err) {
+    console.log(err);
+    alert("❌ Error connecting to server");
+  }
+});
+</script>
+
+</body>
+</html>
