@@ -70,7 +70,6 @@
       transform: translateY(-5px);
     }
 
-    /* PROFILE IMAGE */
     .profile {
       width: 140px;
       height: 140px;
@@ -103,7 +102,6 @@
     .page { display: none; }
     .active { display: flex; }
 
-    /* CERTIFICATES */
     .certificates {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -121,7 +119,6 @@
       transform: scale(1.08);
     }
 
-    /* MODAL */
     .modal {
       display: none;
       position: fixed;
@@ -168,7 +165,6 @@
     button:hover {
       background: #ff6f91;
     }
-
   </style>
 </head>
 
@@ -244,12 +240,13 @@
 </div>
 
 <script>
+// Page navigation
 function showPage(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(page).classList.add('active');
 }
 
-// Typing Effect
+// Typing effect
 const text = "Aspiring Tech Enthusiast | Cloud & Web Developer";
 let i = 0;
 function typeEffect() {
@@ -271,28 +268,36 @@ function closeModal() {
   document.getElementById("modal").style.display = "none";
 }
 
-// Feedback
+// ✅ Feedback (FIXED)
 document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
   e.preventDefault();
 
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const message = document.getElementById("message").value;
+
   try {
-    await fetch("https://localhost:5000/feedback", {
+    const res = await fetch("http://localhost:5000/feedback", {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({
-        name: name.value,
-        email: email.value,
-        message: message.value
-      })
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, email, message })
     });
 
-    alert("Feedback sent!");
-  } catch {
-    alert("Error connecting to server");
+    const data = await res.json();
+
+    if (data.success) {
+      alert("✅ Feedback sent successfully!");
+      document.getElementById("feedbackForm").reset();
+    }
+
+  } catch (err) {
+    console.log(err);
+    alert("❌ Error connecting to server");
   }
 });
 </script>
 
 </body>
 </html>
-
