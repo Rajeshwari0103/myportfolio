@@ -3,7 +3,7 @@
 // Backend API: Render
 
 // ⚠️ Replace this with your actual Render backend URL after deploying
-const BACKEND_URL = 'https://your-backend-name.onrender.com';
+const BACKEND_URL = "https://portfolio-backend-6kzj.onrender.com";
 
 // ===== CONTACT FORM =====
 document.getElementById('contactForm').addEventListener('submit', async function (e) {
